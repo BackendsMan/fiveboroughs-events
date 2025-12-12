@@ -3,12 +3,13 @@ import { getFirestore, collection, addDoc } from "https://www.gstatic.com/fireba
 
 /* 🔴 PASTE YOUR FIREBASE CONFIG HERE */
 const firebaseConfig = {
-  // apiKey: "...",
-  // authDomain: "...",
-  // projectId: "...",
-  // storageBucket: "...",
-  // messagingSenderId: "...",
-  // appId: "..."
+  apiKey: "AIzaSyAX0kvHXECtsT1KzpLGV9bYfFSxdvkWT00",
+  authDomain: "five-boroughs-rp.firebaseapp.com",
+  projectId: "five-boroughs-rp",
+  storageBucket: "five-boroughs-rp.firebasestorage.app",
+  messagingSenderId: "389252131410",
+  appId: "1:389252131410:web:031feda765f7709c0f4d8b",
+  measurementId: "G-N1TLX60BEJ"
 };
 
 const app = initializeApp(firebaseConfig);
