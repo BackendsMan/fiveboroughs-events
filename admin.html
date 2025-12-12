@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Five Boroughs – Staff Review</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>
+  <h1>Staff Review Panel</h1>
+  <p>Local review system</p>
+</header>
+
+<section class="box">
+  <h2>📅 Event Requests</h2>
+  <div id="events"></div>
+</section>
+
+<section class="box">
+  <h2>📝 CivRP Applications</h2>
+  <div id="apps"></div>
+</section>
+
+<script>
+function render(id, key) {
+  const data = JSON.parse(localStorage.getItem(key)) || [];
+  const container = document.getElementById(id);
+
+  if (!data.length) {
+    container.innerHTML = "<p>No submissions yet.</p>";
+    return;
+  }
+
+  container.innerHTML = data.map(d => `
+    <div style="border-bottom:1px solid #333; padding:10px 0">
+      ${Object.entries(d).map(([k,v]) =>
+        `<strong>${k}:</strong> ${v}<br>`
+      ).join("")}
+    </div>
+  `).join("");
+}
+
+render("events", "events");
+render("apps", "applications");
+</script>
+
+</body>
+</html>
