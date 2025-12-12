@@ -3,65 +3,98 @@
 <head>
   <meta charset="UTF-8">
   <title>Five Boroughs Event & Application Hub</title>
-  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      background: #0d0d0d;
+      color: white;
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .box {
+      background: #1a1a1a;
+      padding: 20px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      margin-top: 10px;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border-radius: 6px;
+      border: none;
+    }
+
+    button {
+      margin-top: 15px;
+      width: 100%;
+      padding: 12px;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+    }
+  </style>
 </head>
 
 <body>
-  <header>
-    <h1>Five Boroughs Event + Application Hub</h1>
-  </header>
 
-  <section class="box">
-    <h2>Request an Event</h2>
+<h1>Five Boroughs Event + Application Hub</h1>
 
-    <form id="eventForm">
-      <label>Event Name</label>
-      <input type="text" name="eventName" required>
+<div class="box">
+  <h2>Request an Event</h2>
+  <form>
+    <label>Event Name</label>
+    <input type="text">
 
-      <label>Event Type</label>
-      <select name="eventType" required>
-        <option value="">Select</option>
-        <option>Block Party</option>
-        <option>Sports</option>
-        <option>Car Meet</option>
-        <option>Civilian</option>
-      </select>
+    <label>Event Type</label>
+    <select>
+      <option>Block Party</option>
+      <option>Car Meet</option>
+      <option>Sports</option>
+      <option>Civilian</option>
+    </select>
 
-      <label>Date & Time</label>
-      <input type="datetime-local" name="eventDate" required>
+    <label>Date & Time</label>
+    <input type="datetime-local">
 
-      <label>Event Description</label>
-      <textarea name="description" rows="4" required></textarea>
+    <label>Description</label>
+    <textarea rows="4"></textarea>
 
-      <button type="submit">Submit Event</button>
-    </form>
-  </section>
+    <button type="submit">Submit Event</button>
+  </form>
+</div>
 
-  <section class="box">
-    <h2>Civilian Applications</h2>
+<div class="box">
+  <h2>Civilian Applications</h2>
+  <form>
+    <label>Name</label>
+    <input type="text">
 
-    <form id="civForm">
-      <label>Your Name</label>
-      <input type="text" name="name" required>
+    <label>Application Type</label>
+    <select>
+      <option>Business Permit</option>
+      <option>Job</option>
+      <option>Event Host</option>
+      <option>Property / Vehicle Transfer</option>
+    </select>
 
-      <label>Application Type</label>
-      <select name="type" required>
-        <option value="">Select</option>
-        <option>Business Permit</option>
-        <option>Civilian Job</option>
-        <option>Event Host</option>
-        <option>Property / Vehicle Transfer</option>
-      </select>
+    <label>Details</label>
+    <textarea rows="4"></textarea>
 
-      <label>Details / Backstory</label>
-      <textarea name="details" rows="4" required></textarea>
+    <button type="submit">Submit Application</button>
+  </form>
+</div>
 
-      <button type="submit">Submit Application</button>
-    </form>
-  </section>
-
-  <div id="status"></div>
-
-  <script src="app.js"></script>
 </body>
 </html>
