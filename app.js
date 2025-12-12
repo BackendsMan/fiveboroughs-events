@@ -106,6 +106,7 @@ document.getElementById("civForm").addEventListener("submit", async (e) => {
     appType: f[1].value,
     characterName: f[2].value.trim(),
     details: f[3].value.trim(),
+    status: "Pending",
     createdAt: new Date()
   };
 
