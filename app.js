@@ -2,7 +2,12 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebas
 import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
 const firebaseConfig = {
-  /* 🔴 PASTE YOUR CONFIG HERE EXACTLY */
+  apiKey: "AIzaSyBLAHBLAH",
+  authDomain: "five-boroughs-rp.firebaseapp.com",
+  projectId: "five-boroughs-rp",
+  storageBucket: "five-boroughs-rp.appspot.com",
+  messagingSenderId: "389252131410",
+  appId: "1:389252131410:web:abc123xyz"
 };
 
 const app = initializeApp(firebaseConfig);
