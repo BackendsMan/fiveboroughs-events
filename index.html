@@ -1,86 +1,105 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Five Boroughs Event & CivRP Hub</title>
 
-  <!-- FORCE CSS REFRESH -->
-  <link rel="stylesheet" href="style.css?v=999">
+  <!-- Cache-bust CSS so you always see updates -->
+  <link rel="stylesheet" href="style.css?v=1000">
 </head>
 
 <body>
 
-  <header>
-    <img src="assets/logo.jpeg" class="logo" alt="Five Boroughs Logo">
-    <h1>Five Boroughs Event & Application Hub</h1>
-    <p class="subtitle">Official Server Event & Civilian Systems</p>
+  <header class="hero">
+    <div class="hero-inner">
+      <img src="assets/logo.jpeg" class="logo" alt="Five Boroughs Logo">
+      <h1>Five Boroughs Event & Application Hub</h1>
+      <p class="subtitle">Official Server Event & Civilian Systems</p>
+
+      <nav class="tabs">
+        <button class="tab active" data-target="events">Events</button>
+        <button class="tab" data-target="civ">CivRP</button>
+        <a class="tab tab-link" href="admin.html" target="_blank" rel="noopener">Staff Review</a>
+      </nav>
+    </div>
   </header>
 
+  <!-- Toast (hidden until used) -->
+  <div id="toast" class="toast" aria-live="polite"></div>
+
   <!-- EVENT REQUEST -->
-  <section class="box">
-    <h2>📅 Request an Event</h2>
+  <main class="wrap">
+    <section id="events" class="panel box panel-active">
+      <div class="panel-head">
+        <h2>📅 Request an Event</h2>
+        <p class="panel-sub">Submit an event for staff review. Keep it clear + detailed.</p>
+      </div>
 
-    <form id="eventForm">
-      <label>Discord Name</label>
-      <input type="text" required>
+      <form id="eventForm">
+        <label>Discord Name</label>
+        <input type="text" required placeholder="e.g., shule#0001">
 
-      <label>Event Name</label>
-      <input type="text" required>
+        <label>Event Name</label>
+        <input type="text" required placeholder="e.g., Dyckman Block Party">
 
-      <label>Event Type</label>
-      <select required>
-        <option value="">Select</option>
-        <option>Block Party</option>
-        <option>Car Meet</option>
-        <option>Basketball / Sports</option>
-        <option>Civilian Event</option>
-        <option>Faction Event</option>
-      </select>
+        <label>Event Type</label>
+        <select required>
+          <option value="">Select</option>
+          <option>Block Party</option>
+          <option>Car Meet</option>
+          <option>Basketball / Sports</option>
+          <option>Civilian Event</option>
+          <option>Faction Event</option>
+        </select>
 
-      <label>Date & Time</label>
-      <input type="datetime-local" required>
+        <label>Date & Time</label>
+        <input type="datetime-local" required>
 
-      <label>Event Description</label>
-      <textarea rows="4" required></textarea>
+        <label>Event Description</label>
+        <textarea rows="4" required placeholder="What’s happening? Any rules? Any roles needed?"></textarea>
 
-      <button type="submit">Submit Event Request</button>
-    </form>
-  </section>
+        <button type="submit" class="primary">Submit Event Request</button>
+      </form>
+    </section>
 
-  <!-- CIVRP APPLICATIONS -->
-  <section class="box">
-    <h2>📝 Civilian Applications</h2>
+    <!-- CIVRP APPLICATIONS -->
+    <section id="civ" class="panel box">
+      <div class="panel-head">
+        <h2>📝 Civilian Applications</h2>
+        <p class="panel-sub">Build civ RP with structure: details matter.</p>
+      </div>
 
-    <form id="civForm">
-      <label>Discord Name</label>
-      <input type="text" required>
+      <form id="civForm">
+        <label>Discord Name</label>
+        <input type="text" required placeholder="e.g., shule#0001">
 
-      <label>Application Type</label>
-      <select required>
-        <option value="">Select</option>
-        <option>Business Permit</option>
-        <option>Civilian Job</option>
-        <option>Event Host</option>
-        <option>Property / Vehicle Transfer</option>
-        <option>Gun License</option>
-      </select>
+        <label>Application Type</label>
+        <select required>
+          <option value="">Select</option>
+          <option>Business Permit</option>
+          <option>Civilian Job</option>
+          <option>Event Host</option>
+          <option>Property / Vehicle Transfer</option>
+          <option>Gun License</option>
+        </select>
 
-      <label>Character Name</label>
-      <input type="text" required>
+        <label>Character Name</label>
+        <input type="text" required placeholder="e.g., Jaylen Rivera">
 
-      <label>Details / Backstory</label>
-      <textarea rows="5" required></textarea>
+        <label>Details / Backstory</label>
+        <textarea rows="5" required placeholder="Explain clearly. Include proof/details if needed."></textarea>
 
-      <button type="submit">Submit Application</button>
-    </form>
-  </section>
+        <button type="submit" class="primary">Submit Application</button>
+      </form>
+    </section>
 
-  <footer>
-    <p>© Five Boroughs RP • Official Systems</p>
-  </footer>
+    <footer class="foot">
+      <p>© Five Boroughs RP • Official Systems</p>
+    </footer>
+  </main>
 
-  <!-- LOAD JS ONCE, PROPERLY -->
+  <!-- IMPORTANT: load as module if you're using Firebase -->
   <script type="module" src="app.js"></script>
-
 </body>
 </html>
