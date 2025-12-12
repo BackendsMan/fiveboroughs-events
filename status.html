@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Application Status • Five Boroughs RP</title>
+  <link rel="stylesheet" href="style.css?v=6000">
+</head>
+
+<body>
+
+<header class="hero">
+  <div class="hero-inner">
+    <img src="assets/logo.jpeg" class="logo" alt="Five Boroughs Logo">
+    <h1>Application Status</h1>
+    <p class="subtitle">Check the status of your civilian application</p>
+
+    <nav class="tabs">
+      <a class="tab tab-link" href="index.html">Back to Hub</a>
+    </nav>
+  </div>
+</header>
+
+<div id="toast" class="toast" aria-live="polite"></div>
+
+<main class="wrap">
+  <section class="box">
+
+    <div class="panel-head">
+      <h2>📄 Status Check</h2>
+      <p class="panel-sub">Enter the same Discord name you used when applying.</p>
+    </div>
+
+    <label>Discord Name</label>
+    <input id="discordInput" type="text" placeholder="Discord username">
+
+    <button id="checkBtn" class="primary" type="button">Check Status</button>
+
+    <div id="result" style="margin-top:22px;"></div>
+
+  </section>
+</main>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+/* 🔴 STEP A: PASTE YOUR FIREBASE CONFIG HERE */
+const firebaseConfig = {
+  apiKey: "AIzaSyAX0kvHXECtsT1KzpLGV9bYfFSxdvkWT00",
+  authDomain: "five-boroughs-rp.firebaseapp.com",
+  projectId: "five-boroughs-rp",
+  storageBucket: "five-boroughs-rp.firebasestorage.app",
+  messagingSenderId: "389252131410",
+  appId: "1:389252131410:web:031feda765f7709c0f4d8b",
+  measurementId: "G-N1TLX60BEJ"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+/* 🔴 STEP B: PUT YOUR DISCORD USERNAME HERE */
+const STAFF_DISCORD = "5hu1e";
+
+/* Toast helper */
+const toast = document.getElementById("toast");
+function showToast(title, msg) {
+  toast.innerHTML = `<b>${title}</b> <span>${msg}</span>`;
+  toast.classList.add("show");
+  setTimeout(() => toast.classList.remove("show"), 2500);
+}
+
+function statusColor(status) {
+  if (status === "Approved") return "lime";
+  if (status === "Denied") return "red";
+  return "orange";
+}
+
+/* MAIN LOGIC */
+async function checkStatus() {
+  const discord = document.getElementById("discordInput").value.trim();
+  const result = document.getElementById("result");
+
+  if (!discord) {
+    showToast("⚠️ Error", "Enter your Discord name.");
+    result.innerHTML = "";
+    return;
+  }
+
+  showToast("Checking…", "Searching applications");
+
+  const snap = await getDocs(collection(db, "applications"));
+  const found = snap.docs.find(d => d.data().discord === discord);
+
+  if (!found) {
+    result.innerHTML = `<p>No application found for <strong>${discord}</strong>.</p>`;
+    return;
+  }
+
+  const data = found.data();
+  const status = data.status || "Pending";
+
+  if (status === "Approved") {
+    result.innerHTML = `
+      <p>Status: <strong style="color:lime;">Approved</strong></p>
+      <p>Your application was approved.</p>
+      <button class="primary" id="contactBtn">Contact Staff on Discord</button>
+      <p style="margin-top:10px; color:#aaa; font-size:0.9rem;">
+        This will copy the staff Discord username.
+      </p>
+    `;
+
+    document.getElementById("contactBtn").onclick = async () => {
+      try {
+        await navigator.clipboard.writeText(STAFF_DISCORD);
+        showToast("✅ Copied", "Paste it into Discord and DM staff.");
+      } catch {
+        showToast("Copy failed", `Manually DM: ${STAFF_DISCORD}`);
+      }
+    };
+
+  } else if (status === "Denied") {
+    result.innerHTML = `
+      <p>Status: <strong style="color:red;">Denied</strong></p>
+      ${data.denyReason ? `<p>Reason: ${data.denyReason}</p>` : `<p>No reason provided.</p>`}
+    `;
+  } else {
+    result.innerHTML = `
+      <p>Status: <strong style="color:orange;">Pending</strong></p>
+      <p>Your application is still under review.</p>
+    `;
+  }
+}
+
+document.getElementById("checkBtn").addEventListener("click", checkStatus);
+</script>
+
+</body>
+</html>
