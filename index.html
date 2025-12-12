@@ -2,99 +2,81 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Five Boroughs Event & Application Hub</title>
-  <style>
-    body {
-      background: #0d0d0d;
-      color: white;
-      font-family: Arial, sans-serif;
-      padding: 20px;
-    }
-
-    h1 {
-      text-align: center;
-      margin-bottom: 30px;
-    }
-
-    .box {
-      background: #1a1a1a;
-      padding: 20px;
-      border-radius: 10px;
-      margin-bottom: 20px;
-    }
-
-    label {
-      display: block;
-      margin-top: 10px;
-    }
-
-    input, select, textarea {
-      width: 100%;
-      padding: 10px;
-      margin-top: 5px;
-      border-radius: 6px;
-      border: none;
-    }
-
-    button {
-      margin-top: 15px;
-      width: 100%;
-      padding: 12px;
-      border: none;
-      border-radius: 6px;
-      font-size: 16px;
-    }
-  </style>
+  <title>Five Boroughs Event & CivRP Hub</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<h1>Five Boroughs Event + Application Hub</h1>
+  <header>
+    <img src="assets/logo.jpeg" class="logo" alt="Five Boroughs Logo">
+    <h1>Five Boroughs Event & Application Hub</h1>
+    <p class="subtitle">Official Server Event & Civilian Systems</p>
+  </header>
 
-<div class="box">
-  <h2>Request an Event</h2>
-  <form>
-    <label>Event Name</label>
-    <input type="text">
+  <!-- EVENT REQUEST -->
+  <section class="box">
+    <h2>📅 Request an Event</h2>
 
-    <label>Event Type</label>
-    <select>
-      <option>Block Party</option>
-      <option>Car Meet</option>
-      <option>Sports</option>
-      <option>Civilian</option>
-    </select>
+    <form id="eventForm">
+      <label>Discord Name</label>
+      <input type="text" required>
 
-    <label>Date & Time</label>
-    <input type="datetime-local">
+      <label>Event Name</label>
+      <input type="text" required>
 
-    <label>Description</label>
-    <textarea rows="4"></textarea>
+      <label>Event Type</label>
+      <select required>
+        <option value="">Select</option>
+        <option>Block Party</option>
+        <option>Car Meet</option>
+        <option>Basketball / Sports</option>
+        <option>Civilian Event</option>
+        <option>Faction Event</option>
+      </select>
 
-    <button type="submit">Submit Event</button>
-  </form>
-</div>
+      <label>Date & Time</label>
+      <input type="datetime-local" required>
 
-<div class="box">
-  <h2>Civilian Applications</h2>
-  <form>
-    <label>Name</label>
-    <input type="text">
+      <label>Event Description</label>
+      <textarea rows="4" required></textarea>
 
-    <label>Application Type</label>
-    <select>
-      <option>Business Permit</option>
-      <option>Job</option>
-      <option>Event Host</option>
-      <option>Property / Vehicle Transfer</option>
-    </select>
+      <button type="submit">Submit Event Request</button>
+    </form>
+  </section>
 
-    <label>Details</label>
-    <textarea rows="4"></textarea>
+  <!-- CIVRP APPLICATIONS -->
+  <section class="box">
+    <h2>📝 Civilian Applications</h2>
 
-    <button type="submit">Submit Application</button>
-  </form>
-</div>
+    <form id="civForm">
+      <label>Discord Name</label>
+      <input type="text" required>
 
+      <label>Application Type</label>
+      <select required>
+        <option value="">Select</option>
+        <option>Business Permit</option>
+        <option>Civilian Job</option>
+        <option>Event Host</option>
+        <option>Property / Vehicle Transfer</option>
+        <option>Gun License</option>
+      </select>
+
+      <label>Character Name</label>
+      <input type="text" required>
+
+      <label>Details / Backstory</label>
+      <textarea rows="5" required></textarea>
+
+      <button type="submit">Submit Application</button>
+    </form>
+  </section>
+
+  <footer>
+    <p>© Five Boroughs RP • Official Systems</p>
+  </footer>
+
+  <script src="app.js"></script>
 </body>
 </html>
