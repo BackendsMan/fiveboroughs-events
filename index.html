@@ -3,7 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <title>Five Boroughs Event & CivRP Hub</title>
-  <link rel="stylesheet" href="style.css">
+
+  <!-- FORCE CSS REFRESH -->
+  <link rel="stylesheet" href="style.css?v=999">
 </head>
 
 <body>
@@ -77,13 +79,8 @@
     <p>© Five Boroughs RP • Official Systems</p>
   </footer>
 
-  <script src="app.js"></script>
+  <!-- LOAD JS ONCE, PROPERLY -->
+  <script type="module" src="app.js"></script>
+
 </body>
 </html>
-<script type="module" src="app.js"></script>
- <header>
-  <img src="assets/logo.jpeg" class="logo">
-  <h1>Five Boroughs Event & Application Hub</h1>
-  <p class="subtitle">Official Server Event & Civilian Systems</p>
-</header>
-
